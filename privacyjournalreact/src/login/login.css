@@ -1,0 +1,57 @@
+.loginPage{
+    background-color: blueviolet;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginBox{
+    background: black;
+    min-height: 60%;
+    min-width: 60%;
+    border-radius: 10%;
+    color: antiquewhite;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.loginBoxTitle{
+    font-size: 3rem;
+}
+
+.loginBox input{
+    width: 80%;
+    height: 10%;
+    border-radius: 15px;
+    border-width: 2px;
+    border-color: aquamarine;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.register {
+    background-color: rgb(36, 39, 42);
+    width: 30%;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.submit {
+    background-color: rgb(38, 106, 174);
+    width: 30%;
+    color: aliceblue;
+    text-align: center;
+    font-size: 2rem;
+    border-style: solid;
+    border-radius: 20px;
+}
+
+.submit:hover {
+    background-color: rgb(39, 17, 109);
+    color: aliceblue;
+}
