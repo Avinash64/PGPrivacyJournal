@@ -8,16 +8,16 @@ namespace PrivacyJournal.API.Controllers
     public class LoginController : ControllerBase
     {
         [HttpPost]
-        public string GetLogin(Login login)
+        public ActionResult<object> GetLogin(Login login)
         {
             var account = ProfileStore.Current.Profiles.FirstOrDefault(c => c.Username == login.Username);
             if (account == null){
-                return "Login Failed";
+                return Unauthorized(new {success = false});
             }
             if (account.Password == login.Password){
-                return "Login Successful";
+                return Ok( new {success = true});
             }
-            return "Login Failed";
+            return Unauthorized(new {success = false});;
         }
     }
 }
