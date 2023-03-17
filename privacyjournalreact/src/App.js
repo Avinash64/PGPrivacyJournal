@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './login/login';
 import Home from './home/home';
+import Register from './register/register';
 
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
           <Route path="home" element={<Home />} />
-          {/* <Route path="contact" element={<Contact />} /> */}
+          <Route path="register" element={<Register />} />
           {/* <Route path="*" element={<NoPage />} /> */}
         
       </Routes>

@@ -1,14 +1,15 @@
 import React, {useState} from 'react'
-import "./login.css"
+import "./register.css"
 import { useNavigate } from "react-router-dom";
-function Login() {
+function Register() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
     const navigate = useNavigate();
   return (
-    <div className='loginPage'>
-        <div className='loginBox'>
-            <div className='loginBoxTitle'>Login</div>
+    <div className='registerPage'>
+        <div className='registerBox'>
+            <div className='registerBoxTitle'>Register</div>
             <div className='username'>Username</div>
             <input type={"text"} 
                 id="usernameText"
@@ -23,16 +24,26 @@ function Login() {
                 id="passwordText">
             </input>
             
+            <div className='confirmPassword'>confirm password</div>
+            
+            <input 
+                type={"password"} 
+                onChange={(e)=>{setConfirmPassword(e.target.value); console.log(e.target.value)}} 
+                id="confirmPasswordText">
+            </input>
+            
+
             <div id='error'></div>
             
             <button className='submit' onClick={()=> {
+                if (password == confirmPassword){
                 const options = {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: `{"Username":"${username}","Password":"${password}"}`
+                    body: `{"username":"${username}","password":"${password}"}`
                   };
                   
-                  fetch('http://localhost:5224/api/login', options)
+                  fetch('http://localhost:5224/api/register', options)
                     .then(response => response.json())
                     .then(response => {
                         console.log(response);
@@ -42,13 +53,13 @@ function Login() {
                         }
                         })
                     .catch(err => console.error(err));
-            }}>submit</button>
-            <div className='register'
-            onClick={()=> navigate("/register")}
-            >register</div>
+            }}}>submit</button>
+            <div className='login'
+            onClick={()=> navigate("/")}
+            >login</div>
         </div>
     </div>
   )
 }
 
-export default Login
+export default Register

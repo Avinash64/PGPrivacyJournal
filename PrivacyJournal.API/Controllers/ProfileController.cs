@@ -17,5 +17,13 @@ namespace PrivacyJournal.API.Controllers
             ProfileStore.Current.Profiles.Add(new Profile{Id = 10, Username = "Bruh", Password = "pass"});
             return Ok(ProfileStore.Current.Profiles);
         }
+        [HttpGet("{id}")]
+        public ActionResult<Profile> GetSingleProfile(int id)
+        {
+            return Ok(ProfileStore.Current.Profiles.FirstOrDefault(c=>c.Id == id));
+        }        
     }
+
+
+
 }
