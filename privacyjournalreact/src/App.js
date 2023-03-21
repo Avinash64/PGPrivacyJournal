@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './login/login';
 import Home from './home/home';
 import Register from './register/register';
+import JournalEntry from './journalEntry/journalEntry';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Login />} />
           <Route path="home" element={<Home />} />
           <Route path="register" element={<Register />} />
+          <Route path="journalentry" element={<JournalEntry />} />
           {/* <Route path="*" element={<NoPage />} /> */}
         
       </Routes>
