@@ -1,5 +1,6 @@
 using PrivacyJournal.API.Models;
 using Microsoft.AspNetCore.Mvc;
+using PrivacyJournal.API.Entities;
 namespace PrivacyJournal.API.Controllers
 {
     [ApiController]
@@ -9,14 +10,21 @@ namespace PrivacyJournal.API.Controllers
         [HttpGet]
         public ActionResult<Journal> GetJournal()
         {
-            return Ok(JournalStore.Current.Journals);
+
+            using var db = new PrivacyJournalContext();
+            return Ok(db.Journals.ToList());
         }        
         [HttpPost]
-        public ActionResult<Journal> MakeJournal(object id)
+        public ActionResult<Journal> MakeJournal(Journal journal)
         {
-            Console.Write(id);
-            JournalStore.Current.Journals.Add(new Journal{Id = 10, Title = "Bruh",Date = DateTime.Now, Entry = "pass"});
-            return Ok(JournalStore.Current.Journals);
+
+            using var db = new PrivacyJournalContext();
+            var date  = DateTime.Now;
+            var j = new Journal{Title = journal.Title, Date = date, Entry = journal.Entry};
+            db.Journals.Add(j);
+
+            db.SaveChanges();
+            return Ok(db.Journals.FirstOrDefault(c=> c.Date == date));
         }
     }
 }

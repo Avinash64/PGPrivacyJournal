@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using PrivacyJournal.API.Entities;
 using PrivacyJournal.API.Models;
 
 namespace PrivacyJournal.API.Controllers
@@ -10,13 +11,19 @@ namespace PrivacyJournal.API.Controllers
         [HttpPost]
         public ActionResult<object> newRegister(Login login)
         {
-            var account = ProfileStore.Current.Profiles.FirstOrDefault(c => c.Username == login.Username);
+            
+            using var db = new PrivacyJournalContext();
+
+            var account = db.Accounts.FirstOrDefault(c => c.Username == login.Username);
             if (login.Username == null || login.Password == null || account != null){
                 return BadRequest(new {success = false});
             }
             var id = ProfileStore.Current.Profiles.Count + 1;
-            ProfileStore.Current.Profiles.Add(new Profile(){Id=id, Username = login.Username, Password = login.Password});
-            return Ok(new {success = true, id = id});;
+            Console.WriteLine("Inserting a new blog");
+            db.Add(new Profile {Username = login.Username, Password = login.Password});
+            db.SaveChanges();
+            
+            return Ok(new {success = true, id = id});
         }
     }
 }

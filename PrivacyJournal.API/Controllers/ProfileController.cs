@@ -6,6 +6,7 @@ namespace PrivacyJournal.API.Controllers
     [Route("api/profile")]
     public class ProfileController : ControllerBase
     {
+            
         [HttpGet]
         public ActionResult<Profile> GetProfile()
         {
