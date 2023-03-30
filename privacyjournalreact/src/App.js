@@ -5,6 +5,7 @@ import Login from './login/login';
 import Home from './home/home';
 import Register from './register/register';
 import JournalEntry from './journalEntry/journalEntry';
+import Journals from './journals/journals';
 
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
           <Route path="home" element={<Home />} />
           <Route path="register" element={<Register />} />
           <Route path="journalentry" element={<JournalEntry />} />
-          {/* <Route path="*" element={<NoPage />} /> */}
+          <Route path="journals" element={<Journals />} />
         
       </Routes>
     </BrowserRouter>
